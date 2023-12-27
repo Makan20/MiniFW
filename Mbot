@@ -1,7 +1,7 @@
 from telegram.ext import Update, Updater, MessageHandler, Filters, CallbackContext
 
 # توکن ربات خود را در اینجا قرار دهید
-BOT_TOKEN = "YOUR_BOT_TOKEN"
+BOT_TOKEN = "6942468270:AAG1soc6nSaBn_zaLrzJToUmuTd_6vjMGqA"
 
 def remove_anonymous_forward(update: Update, context: CallbackContext) -> None:
     # اگر پیام فوروارد شده و از فرستنده ناشناس باشد
