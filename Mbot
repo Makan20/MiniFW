@@ -1,0 +1,23 @@
+from telegram.ext import Update, Updater, MessageHandler, Filters, CallbackContext
+
+# توکن ربات خود را در اینجا قرار دهید
+BOT_TOKEN = "YOUR_BOT_TOKEN"
+
+def remove_anonymous_forward(update: Update, context: CallbackContext) -> None:
+    # اگر پیام فوروارد شده و از فرستنده ناشناس باشد
+    if update.message.forward_from is not None and update.message.forward_sender_name is not None:
+        update.message.reply_text("هویت ناشناس از این پیام حذف شده است.")
+        # حذف پیام فوروارد شده
+        update.message.delete()
+
+def main() -> None:
+    updater = Updater(token=BOT_TOKEN, use_context=True)
+    dp = updater.dispatcher
+
+    dp.add_handler(MessageHandler(Filters.forwarded, remove_anonymous_forward))
+
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == "__main__":
+    main()
